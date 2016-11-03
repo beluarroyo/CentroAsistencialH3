@@ -2,7 +2,7 @@
 
 
 from django.shortcuts import render, redirect,get_object_or_404
-from CentroAsistencial.forms import (LoginForm, PacienteForm, buscar, RegistroHCForm)
+from CentroAsistencial.forms import (LoginForm, PacienteForm, RegistroHCForm)
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
@@ -87,3 +87,14 @@ def registro_paciente(request, id_paciente=None):
         form = PacienteForm()
 
     return render(request, 'login.html', {'form': form})
+
+@login_required
+def buscar_paciente(request):
+    pacientes= []
+    form = BuscarForm()
+    if request.method=='POST':
+        form = BuscarForm(request.POST)
+        if form.is_valid():
+            Paciente= Paciente.objects.filter(paciente=paciente).order_by('apellido', 'dni','id')
+
+    return render(request, 'buscar.html', {'form': form, 'pacientes': pacientes})
