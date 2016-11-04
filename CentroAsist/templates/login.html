@@ -1,37 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}">
-  <head>
-    <script LANGUAGE="Javascript">
-        var txt=" Centro Asistencial";
-        var espera=300;
-        var refresco=null;
-        function rotulo_title() {
-            document.title=txt;
-            txt=txt.substring(1,txt.length)+txt.charAt(0);
-            refresco=setTimeout("rotulo_title()",espera);
-        }
-        rotulo_title();
-    </script>
-</head>
-<body>
-<center><img src ="{% static "imagen/centro.png" %}" WIDTH=980></center>
 <br>
+<br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Centro Asistencial </title>
 
-{% block body %}
+    <style>
+        body {
+            background-color: #eee;
+        }
+        form {
+            margin: 180px auto;
+            width: 350px;
+            height: 250;
+            background: white;
+            border-bottom: 4px solid darkorange; 
+        } 
+        form label {
+            display: block;
+            color: white;
+            background: #f07800;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
 
+        form input[type="text"],input[type="password"]{
+            width: 230px;
+            padding: 12px 40px;
+            font-weight: bold;
+            margin-left: 18px;
+            margin-bottom: 10px;
+            border: 1px solid #f07800;
+            text-transform: uppercase;
+            -moz-transition: all 0.5s;
+        }
 
-<FORM name=form method="post">
-{% csrf_token %}
-{{ form.as_p }}
+        form input[type="text"]
 
-<INPUT type='submit' value='ingresar'>
+    </style>
 
-</FORM>
+</head>
 
+<body>
+<img src ="{% static "imagen/centro.png" %}" ALIGN=RIGHT WIDTH=1000 HEIGHT=200>
+<br>
+<br>
+    <form action="">
+        <label form="">Iniciar Sesion</label> <br>
+        <input type="text" name="" id="" placeholder="Usuario"> <br>
+        <input type="password" name="" id="" placeholder="Contrase&ntilde;a"> <br>
+        <input type="submit" value="Entrar">
 
-{% endblock body %}
+    </form>
 
 
 </body>
 </html>
+{% endblock %}
